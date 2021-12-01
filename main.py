@@ -47,7 +47,7 @@ class FileSearchExtension(Extension):
         """ Searches for Files using fd command """
         cmd = [
             'timeout', '5s', 'ionice', '-c', '3', bin_name, '--threads', '1',
-            '--hidden'
+#            '--hidden'
         ]
 
         if file_type == FILE_SEARCH_FILE:
@@ -113,7 +113,7 @@ class FileSearchExtension(Extension):
 
         # some terminals might work differently. This is already prepared for that.
         if terminal_emulator in [
-                'gnome-terminal', 'terminator', 'tilix', 'xfce-terminal', 'pantheon-terminal'
+                'gnome-terminal', 'terminator', 'tilix', 'xfce-terminal', 'io.elementary.terminal'
         ]:
             return RunScriptAction(terminal_emulator,
                                    ['--working-directory', path])
@@ -131,7 +131,7 @@ class KeywordQueryEventListener(EventListener):
 
         query = event.get_argument()
 
-        if not query or len(query) < 3:
+        if not query or len(query) < 2:
             return RenderResultListAction([
                 ExtensionResultItem(
                     icon='images/icon.png',
